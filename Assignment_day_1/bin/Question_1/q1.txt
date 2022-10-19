@@ -1,0 +1,10 @@
+
+Q1/ What is the Difference between Comparable and Comparator? Explain with examples.
+
+   **Comparable                                        **Comparator
+    
+   1.Comparable used in inside the same class.         1.Comparator used in outside the class.
+   2.Comparable provides single sorting sequence.      2.Comparator provides multiple sorting sequence.
+   3.Comparable provides compareTo method to sort,     3.Comparator provides compare() method to sort,
+   elements.                                            elements.
+   4.Comparable is present in java.lang package.       4.Comparable is present in java.util package. 
