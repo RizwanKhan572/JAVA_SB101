@@ -1,0 +1,413 @@
+ Basic Sql-I
+
+Q1.
+
+1) create table DEPOSIT
+    -> (
+    -> ACTNO VARCHAR(25),
+    -> CNAME VARCHAR(20),
+    -> BNAME VARCHAR(20),
+    -> AMOUNT INT,
+    -> ADATE DATE
+    -> );
+
+
+ 
+2) CREATE TABLE BRANCH
+    -> (
+    -> BNAME VARCHAR(20),
+    -> CITY  VARCHAR(20)
+    -> );
+
+
+ 3) CREATE TABLE CUSTOMER
+    -> (
+    -> CNAME VARCHAR(20),
+    -> CITY VARCHAR(20)
+    -> );
+
+
+4) CREATE TABLE BORROW
+    -> (
+    -> LOANNO VARCHAR(5),
+    -> CNAME VARCHAR(20),
+    -> BNAME VARCHAR(20),
+    -> AMOUNT INT
+    -> );
+
+
+mysql> 
+
+Q2. Describe the tables which are already created.
+
+1) mysql> DESC DEPOSIT;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| ACTNO  | varchar(25) | YES  |     | NULL    |       |
+| CNAME  | varchar(20) | YES  |     | NULL    |       |
+| BNAME  | varchar(20) | YES  |     | NULL    |       |
+| AMOUNT | int         | YES  |     | NULL    |       |
+| ADATE  | date        | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+
+2) DESC BRANCH;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| BNAME | varchar(20) | YES  |     | NULL    |       |
+| CITY  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+
+3)DESC CUSTOMER;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| CNAME | varchar(20) | YES  |     | NULL    |       |
+| CITY  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+
+4)DESC BORROW;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| LOANNO | varchar(5)  | YES  |     | NULL    |       |
+| CNAME  | varchar(20) | YES  |     | NULL    |       |
+| BNAME  | varchar(20) | YES  |     | NULL    |       |
+| AMOUNT | int         | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+
+3. Insert the data as for the following.
+
+1)DEPOSIT
+
+SELECT * FROM DEPOSIT;
++-------+---------+-----------+--------+-----------+
+| ACTNO | CNAME   | BNAME     | AMOUNT | ADATE     |
++-------+---------+-----------+--------+-----------+
+| 100   | ANIL    | VRCE      |   1000 | 01-MAR-95 |
+| 101   | SUNIL   | MGROAD    |   5000 | 04-JAN-96 |
+| 102   | RAHUL   | KAROLBAGH |   3500 | 17-NOV-95 |
+| 103   | MADHURI | CHANDNI   |   1200 | 17-DEC-95 |
+| 103   | PRAMOD  | MGROAD    |   3000 | 27-MAR-96 |
+| 103   | SANDEEP | KAROLBAGH |   2000 | 31-MAR-96 |
++-------+---------+-----------+--------+-----------+
+
+2)BRANCH
+
+ SELECT * FROM BRANCH;
++-----------+-----------+
+| BRANCH    | CITY      |
++-----------+-----------+
+| VRCE      | NAGPUR    |
+| KAROLBAGH | DELHI     |
+| CHANDNI   | DELHI     |
+| MGROAD    | BANGALORE |
++-----------+-----------+
+
+3)BORROW
+
+ SELECT * FROM BORROW;
++--------+---------+-----------+--------+
+| LOANNO | CNAME   | BNAME     | AMOUNT |
++--------+---------+-----------+--------+
+| 201    | ANIL    | VRCE      |   1000 |
+| 206    | RAHUL   | KAROLBAGH |   5000 |
+| 311    | RAHUL   | MGROAD    |   3000 |
+| 321    | MADHURI | CHANDNI   |   2000 |
+| 375    | PRAMOD  | MGROAD    |   8000 |
++--------+---------+-----------+--------+
+
+4)CUSTOMER
+
+SELECT * FROM CUSTOMER;
++---------+---------+
+| CNAME   | CITY    |
++---------+---------+
+| ANIL    | CALCUTA |
+| RAHUL   | BARODA  |
+| MADHURI | NAGPUR  |
+| PRAMOD  | NAGPUR  |
+| SUNIL   | DELHI   |
++---------+---------+
+
+Q4.Retrieve all the records from the table BORROW where amount in between2000 and 3000
+
+mysql> SELECT * FROM BORROW WHERE AMOUNT BETWEEN 2000 AND 3000;
++--------+---------+---------+--------+
+| LOANNO | CNAME   | BNAME   | AMOUNT |
++--------+---------+---------+--------+
+| 311    | RAHUL   | MGROAD  |   3000 |
+| 321    | MADHURI | CHANDNI |   2000 |
++--------+---------+---------+--------+
+
+Q5.Retrieve the details from the table DEPOSIT
+
+SELECT * FROM DEPOSIT;
++-------+---------+-----------+--------+-----------+
+| ACTNO | CNAME   | BNAME     | AMOUNT | ADATE     |
++-------+---------+-----------+--------+-----------+
+| 100   | ANIL    | VRCE      |   1000 | 01-MAR-95 |
+| 101   | SUNIL   | MGROAD    |   5000 | 04-JAN-96 |
+| 102   | RAHUL   | KAROLBAGH |   3500 | 17-NOV-95 |
+| 103   | MADHURI | CHANDNI   |   1200 | 17-DEC-95 |
+| 104   | PRAMOD  | MGROAD    |   3000 | 27-MAR-96 |
+| 105   | SANDEEP | KAROLBAGH |   2000 | 31-MAR-96 |
++-------+---------+-----------+--------+-----------+
+
+Q6.Retrieve the customer name, account no of DEPOSIT
+
+ SELECT CNAME,ACTNO FROM DEPOSIT;
++---------+-------+
+| CNAME   | ACTNO |
++---------+-------+
+| ANIL    | 100   |
+| SUNIL   | 101   |
+| RAHUL   | 102   |
+| MADHURI | 103   |
+| PRAMOD  | 104   |
+| SANDEEP | 105   |
++---------+-------+
+
+Q7. Retrieve the name of the customer living in NAGPUR
+SELECT CNAME FROM CUSTOMER WHERE CITY='NAGPUR';
++---------+
+| CNAME   |
++---------+
+| MADHURI |
+| PRAMOD  |
++---------+
+
+Q8. Retrieve the name of the customers who opened account after 17-NOV-95
+
+Q9.
+
+Q10.. Retrieve all the records from the table DEPOSIT where CNAME begins
+with C.
+
+SELECT * FROM DEPOSIT WHERE CNAME LIKE'C%';
+Empty set (0.00 sec) // NO RECORD FOUND
+
+Q11.
+
+Q12.Retrieve all the records from the table DEPOSIT where branch name is
+CHANDNI or MGROAD.
+mysql> SELECT * FROM DEPOSIT WHERE BNAME IN('CHANDNI','MGROAD');
++-------+---------+---------+--------+-----------+
+| ACTNO | CNAME   | BNAME   | AMOUNT | ADATE     |
++-------+---------+---------+--------+-----------+
+| 101   | SUNIL   | MGROAD  |   5000 | 04-JAN-96 |
+| 103   | MADHURI | CHANDNI |   1200 | 17-DEC-95 |
+| 104   | PRAMOD  | MGROAD  |   3000 | 27-MAR-96 |
++-------+---------+---------+--------+-----------+
+
+Q13. Retrieve all the records from the table DEPOSIT where branch name is not
+CHANDNI or MGROAD
+
+SELECT * FROM DEPOSIT WHERE BNAME NOT IN('CHANDNI','MGROAD');
++-------+---------+-----------+--------+-----------+
+| ACTNO | CNAME   | BNAME     | AMOUNT | ADATE     |
++-------+---------+-----------+--------+-----------+
+| 100   | ANIL    | VRCE      |   1000 | 01-MAR-95 |
+| 102   | RAHUL   | KAROLBAGH |   3500 | 17-NOV-95 |
+| 105   | SANDEEP | KAROLBAGH |   2000 | 31-MAR-96 |
++-------+---------+-----------+--------+-----------+
+
+Q14. Retrieve all the records from DEPOSIT where amount > 1000 and arrange the customer name in
+ascending order
+
+Q15. Retrieve all the records from DEPOSIT where amount > 1000 and arrange the customer name in
+descending order.
+
+Q16. Retrieve customer details from BORROW table where the third character of
+the customer name is either ‘A’ or ‘D’.
+
+Q17. Retrieve all the records from the table BORROW where amount is not
+between 2000 and 8000.
+
+ * FROM BORROW WHERE AMOUNT NOT IN(2000,8000);
++--------+-------+-----------+--------+
+| LOANNO | CNAME | BNAME     | AMOUNT |
++--------+-------+-----------+--------+
+| 201    | ANIL  | VRCE      |   1000 |
+| 206    | RAHUL | KAROLBAGH |   5000 |
+| 311    | RAHUL | MGROAD    |   3000 |
++--------+-------+-----------+--------+
+
+Q18. Find out the unique records from the table DEPOSIT
+
+SELECT DISTINCT ACTNO FROM DEPOSIT;
++-------+
+| ACTNO |
++-------+
+| 100   |
+| 101   |
+| 102   |
+| 103   |
+| 104   |
+| 105   |
++-------+
+
+ SELECT DISTINCT CNAME FROM DEPOSIT;
++---------+
+| CNAME   |
++---------+
+| ANIL    |
+| SUNIL   |
+| RAHUL   |
+| MADHURI |
+| PRAMOD  |
+| SANDEEP |
++---------+
+
+SELECT DISTINCT BNAME FROM DEPOSIT;
++-----------+
+| BNAME     |
++-----------+
+| VRCE      |
+| MGROAD    |
+| KAROLBAGH |
+| CHANDNI   |
++-----------+
+
+ SELECT DISTINCT ADATE FROM DEPOSIT;
++-----------+
+| ADATE     |
++-----------+
+| 01-MAR-95 |
+| 04-JAN-96 |
+| 17-NOV-95 |
+| 17-DEC-95 |
+| 27-MAR-96 |
+| 31-MAR-96 |
++-----------+
+
+Q19. Update the amount of all depositors in deposit table by giving them 10% interest (i.e.
+amount=amount * 0.1) where branch is VRCE.
+ UPDATE DEPOSIT SET AMOUNT=AMOUNT+AMOUNT/10 WHERE BNAME='VRCE';
+
+
+mysql> SELECT * FROM DEPOSIT;
++-------+---------+-----------+--------+-----------+
+| ACTNO | CNAME   | BNAME     | AMOUNT | ADATE     |
++-------+---------+-----------+--------+-----------+
+| 100   | ANIL    | VRCE      |   1100 | 01-MAR-95 |
+| 101   | SUNIL   | MGROAD    |   5000 | 04-JAN-96 |
+| 102   | RAHUL   | KAROLBAGH |   3500 | 17-NOV-95 |
+| 103   | MADHURI | CHANDNI   |   1200 | 17-DEC-95 |
+| 104   | PRAMOD  | MGROAD    |   3000 | 27-MAR-96 |
+| 105   | SANDEEP | KAROLBAGH |   2000 | 31-MAR-96 |
++-------+---------+-----------+--------+-----------+
+
+Q20. Update the amount of all depositors in deposit table by giving them 10% interest where
+branch is VRCE and customer name ANIL.
+
+
+mysql> UPDATE DEPOSIT SET AMOUNT=AMOUNT+AMOUNT/10 WHERE BNAME='VRCE' AND CNAME='ANIL';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM DEPOSIT;
++-------+---------+-----------+--------+-----------+
+| ACTNO | CNAME   | BNAME     | AMOUNT | ADATE     |
++-------+---------+-----------+--------+-----------+
+| 100   | ANIL    | VRCE      |   1210 | 01-MAR-95 |
+| 101   | SUNIL   | MGROAD    |   5000 | 04-JAN-96 |
+| 102   | RAHUL   | KAROLBAGH |   3500 | 17-NOV-95 |
+| 103   | MADHURI | CHANDNI   |   1200 | 17-DEC-95 |
+| 104   | PRAMOD  | MGROAD    |   3000 | 27-MAR-96 |
+| 105   | SANDEEP | KAROLBAGH |   2000 | 31-MAR-96 |
++-------+---------+-----------+--------+-----------+
+
+Basi Sql-II
+
+1. Count the number of students of each departmen
+
+select branch, count(name) from stuident group by branch;
++--------+-------------+
+| branch | count(name) |
++--------+-------------+
+| CSE    |           2 |
+| ETC    |           3 |
+| EEE    |           1 |
+| BME    |           1 |
++--------+-------------+
+
+2. Count the number of students of each department where the department name starts with ‘E’.
+
+select branch, count(name) from stuident where branch like 'E%' group by branch;
++--------+-------------+
+| branch | count(name) |
++--------+-------------+
+| ETC    |           3 |
+| EEE    |           1 |
++--------+-------------+
+
+3. Add a field called MARKS to the table STUDENT which can hold a number upto 8 digit length.
+
+ alter table stuident modify marks mediumint;
+
+
+mysql> desc stuident;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| NAME   | varchar(20) | YES  |     | NULL    |       |
+| ROLL   | int         | YES  |     | NULL    |       |
+| BRANCH | varchar(20) | YES  |     | NULL    |       |
+| CITY   | varchar(20) | YES  |     | NULL    |       |
+| marks  | mediumint   | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+
+4. Modify the field :”NAME” of the table STUDENT to hold a maximum of 25 character.
+
+alter table stuident modify name varchar(25);
+
+
+mysql> desc stuident;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| name   | varchar(25) | YES  |     | NULL    |       |
+| ROLL   | int         | YES  |     | NULL    |       |
+| BRANCH | varchar(20) | YES  |     | NULL    |       |
+| CITY   | varchar(20) | YES  |     | NULL    |       |
+| marks  | mediumint   | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+
+
+5. Delete all rows from the table STUDENT where branch is ETC.
+
+delete from stuident where branch='ETC';
+
+mysql> select * from stuident;
++--------+------+--------+---------+-------+
+| name   | ROLL | BRANCH | CITY    | marks |
++--------+------+--------+---------+-------+
+| VIJAYA |  150 | CSE    | CHENNAI |  NULL |
+| RAVI   |  300 | EEE    | DELHI   |  NULL |
+| KARAN  |  111 | CSE    | CTC     |  NULL |
+| REKHA  |  117 | BME    | BBSR    |  NULL |
++--------+------+--------+---------+-------+
+
+6. Rename the table STUDENT to STUDINFORMATION.
+
+ rename table stuident to stuidentinformation;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from stuidentinformation;
++--------+------+--------+---------+-------+
+| name   | ROLL | BRANCH | CITY    | marks |
++--------+------+--------+---------+-------+
+| VIJAYA |  150 | CSE    | CHENNAI |  NULL |
+| RAVI   |  300 | EEE    | DELHI   |  NULL |
+| KARAN  |  111 | CSE    | CTC     |  NULL |
+| REKHA  |  117 | BME    | BBSR    |  NULL |
++--------+------+--------+---------+-------+
+
+
+7. Delete all the data part from the table STUDENT.
+ delete from stuidentinformation;
+
+8. Destroy the table STUDENT.
+ drop table stuidentinformation;
